@@ -1,6 +1,5 @@
 package com.example.registration.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,15 +9,14 @@ import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
-@Table(name = "course")
+@Table(name = "registration")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CourseEntity extends RepresentationModel<CourseEntity> implements Serializable {
+public class RegistrationEntity extends RepresentationModel<RegistrationEntity> implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -26,10 +24,12 @@ public class CourseEntity extends RepresentationModel<CourseEntity> implements S
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private StudentEntity student;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JsonIgnore // Adiciona essa anotação para ignorar a lista na serialização
-    private List<RegistrationEntity> registrationEntityList;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private CourseEntity course;
 
 }

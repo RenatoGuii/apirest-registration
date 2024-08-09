@@ -1,11 +1,13 @@
 package com.example.registration.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -23,5 +25,9 @@ public class StudentEntity extends RepresentationModel<StudentEntity> implements
 
     private String name;
     private String email;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonIgnore // Adiciona essa anotação para ignorar a lista na serialização
+    private List<RegistrationEntity> registrationEntityList;
 
 }
