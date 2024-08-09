@@ -2,6 +2,7 @@ package com.example.registration.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,8 +13,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public class StudentEntity implements Serializable {
+public class StudentEntity extends RepresentationModel<StudentEntity> implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 

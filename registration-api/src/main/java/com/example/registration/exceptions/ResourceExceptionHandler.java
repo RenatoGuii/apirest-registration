@@ -23,4 +23,15 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
 
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<StandartError> recordNotFound(EntityNotFoundException e, HttpServletRequest request) {
+        StandartError err = new StandartError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(HttpStatus.NOT_FOUND.value());
+        err.setError("Not found");
+        err.setMsg(e.getMessage());
+        err.setPath(request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+    }
+
 }
