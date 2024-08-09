@@ -7,8 +7,6 @@ import com.example.registration.exceptions.EntityNotFoundException;
 import com.example.registration.repositories.StudentRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,12 +45,9 @@ public class StudentService {
     }
 
     public StudentEntity updateStudent (String id, StudentDTO data) {
-        Optional<StudentEntity> optionalStudent = studentRepository.findById(id);
-        if (optionalStudent.isEmpty()) {
-            throw new EntityNotFoundException(("A student with this identification was not found"));
-        }
-        StudentEntity student = optionalStudent.get();
+        StudentEntity student = getOneStudent(id);
         BeanUtils.copyProperties(data, student);
+        postStudent(student);
         return student;
     }
 

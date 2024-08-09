@@ -42,7 +42,6 @@ public class StudentController {
     @PutMapping("/{id}")
     public ResponseEntity<StudentEntity> updateStudent(@PathVariable(value = "id") String id, @RequestBody @Valid StudentDTO data) {
         StudentEntity updatedStudent = studentService.updateStudent(id, data);
-        studentService.postStudent(updatedStudent);
         return ResponseEntity.status(HttpStatus.OK).body(updatedStudent);
     }
 
