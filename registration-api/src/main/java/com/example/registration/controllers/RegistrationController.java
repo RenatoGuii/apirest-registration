@@ -5,6 +5,8 @@ import com.example.registration.entities.RegistrationEntity;
 import com.example.registration.services.RegistrationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +33,8 @@ public class RegistrationController {
     }
 
     @GetMapping
-    public ResponseEntity<List<RegistrationEntity>> getAllRegistrations() {
-        List<RegistrationEntity> registrationList = registrationService.getAllRegistrations();
+    public ResponseEntity<List<RegistrationEntity>> getAllRegistrations(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(required = false) String courseName, @RequestParam(required = false) String studentName) {
+        List<RegistrationEntity> registrationList = registrationService.getAllRegistrations(page, size, courseName, studentName);
         return ResponseEntity.status(HttpStatus.OK).body(registrationList);
     }
 

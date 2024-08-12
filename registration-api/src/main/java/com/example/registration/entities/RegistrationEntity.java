@@ -1,5 +1,6 @@
 package com.example.registration.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,5 +32,10 @@ public class RegistrationEntity extends RepresentationModel<RegistrationEntity> 
     @ManyToOne
     @JoinColumn(name = "course_id")
     private CourseEntity course;
+
+    @JsonIgnore
+    private String studentName;
+    @JsonIgnore
+    private String courseName;
 
 }

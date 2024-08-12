@@ -35,8 +35,8 @@ public class CourseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CourseEntity>> getAllCourses() {
-        List<CourseEntity> listCourses = courseService.getAllCourses();
+    public ResponseEntity<List<CourseEntity>> getAllCourses(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        List<CourseEntity> listCourses = courseService.getAllCourses(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(listCourses);
     }
 

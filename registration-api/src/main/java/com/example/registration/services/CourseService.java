@@ -7,6 +7,7 @@ import com.example.registration.exceptions.EntityNotFoundException;
 import com.example.registration.repositories.CourseRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,8 +34,9 @@ public class CourseService {
         return optionalCourse.get();
     }
 
-    public List<CourseEntity> getAllCourses() {
-        List<CourseEntity> listCourses = courseRepository.findAll();
+    public List<CourseEntity> getAllCourses(int page, int size) {
+        // Aplicando Paginação
+        List<CourseEntity> listCourses = courseRepository.findAll(PageRequest.of(page, size)).getContent();
         if (listCourses.isEmpty()) {
             throw new EntityNotFoundException("No course records were found");
         }

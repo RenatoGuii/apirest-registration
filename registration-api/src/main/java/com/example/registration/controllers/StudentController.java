@@ -34,8 +34,8 @@ public class StudentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<StudentEntity>> getAllStudents() {
-        List<StudentEntity> listStudent = studentService.getAllStudents();
+    public ResponseEntity<List<StudentEntity>> getAllStudents(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        List<StudentEntity> listStudent = studentService.getAllStudents(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(listStudent);
     }
 

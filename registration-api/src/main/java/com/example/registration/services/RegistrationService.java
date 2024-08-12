@@ -11,8 +11,10 @@ import com.example.registration.repositories.RegistrationRepository;
 import com.example.registration.repositories.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,6 +46,8 @@ public class RegistrationService {
         RegistrationEntity registration = new RegistrationEntity();
         registration.setCourse(course);
         registration.setStudent(student);
+        registration.setCourseName(course.getName());
+        registration.setStudentName(student.getName());
         registrationRepository.save(registration);
         return registration;
     }
@@ -56,10 +60,10 @@ public class RegistrationService {
         return optionalRegistration.get();
     }
 
-    public List<RegistrationEntity> getAllRegistrations() {
-        List<RegistrationEntity> registrationList = registrationRepository.findAll();
+    public List<RegistrationEntity> getAllRegistrations(int page, int size, String courseName, String studentName) {
+        List<RegistrationEntity> registrationList = registrationRepository.findRegistrationsByFilters(courseName, studentName, PageRequest.of(page, size)).getContent();
         if (registrationList.isEmpty()) {
-            throw new EntityNotFoundException("No course records were found");
+            throw new EntityNotFoundException("No registration records were found");
         }
         for (RegistrationEntity registration : registrationList) {
             registration.add(linkTo(methodOn(RegistrationController.class).getOneRegistration(registration.getId())).withSelfRel());

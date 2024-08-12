@@ -7,6 +7,7 @@ import com.example.registration.exceptions.EntityNotFoundException;
 import com.example.registration.repositories.StudentRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,8 +34,8 @@ public class StudentService {
         return student.get();
     }
 
-    public List<StudentEntity> getAllStudents() {
-        List<StudentEntity> listStudents = studentRepository.findAll();
+    public List<StudentEntity> getAllStudents(int page, int size) {
+        List<StudentEntity> listStudents = studentRepository.findAll(PageRequest.of(page, size)).getContent();
         if (listStudents.isEmpty()) {
             throw new EntityNotFoundException("No student records were found");
         }
