@@ -1,4 +1,4 @@
-API de Registro de Matrículas
+<h1>API de Registro de Matrículas</h1>
 
 Este projeto é uma API desenvolvida com a finalidade de estudo das tecnologias Java utilizando o Spring Boot 3, Spring Security, Spring Data JPA e Swagger. A API permite a criação, leitura, atualização e exclusão (CRUD) de registros de cursos, alunos e matrículas.
 
