@@ -37,11 +37,17 @@ Este projeto é uma API desenvolvida com a finalidade de estudo das tecnologias 
 
 <h2>Documentação da API:</h2>
 - http://localhost:8080/swagger-ui.html (Link do Swagger UI acessada de maneira local após iniciar a aplicação localmente)
+
 - A documentação da API foi gerada utilizando o Swagger e pode ser acessada no ambiente de desenvolvimento:
+
 - Autenticação na Documentação: Para testar as requisições protegidas, você pode se autenticar diretamente no Swagger UI (ou use outras plataformas de consumo de API se preferir)
+
 - Primeiro, se registre na API usando o endpoint /auth/register.
+
 - Execute o login na API usando o endpoint /auth/login e obtenha o token JWT.
+
 - No Swagger UI, clique no ícone de cadeado e insira o token obtido no formato Bearer <seu-token>.
+
 - Agora você pode acessar os endpoints protegidos.
 
 <h2>Endpoints:</h2>
