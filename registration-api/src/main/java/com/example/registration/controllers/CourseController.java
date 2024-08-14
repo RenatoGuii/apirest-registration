@@ -6,7 +6,6 @@ import com.example.registration.services.CourseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/course")
+@RequestMapping("course")
 public class CourseController {
 
     @Autowired
@@ -23,7 +22,7 @@ public class CourseController {
     @PostMapping
     public ResponseEntity<CourseEntity> createCourse(@RequestBody @Valid CourseDTO data) {
         CourseEntity newCourse = new CourseEntity();
-        BeanUtils.copyProperties(data, new CourseEntity());
+        BeanUtils.copyProperties(data, newCourse);
         courseService.postCourse(newCourse);
         return ResponseEntity.status(HttpStatus.CREATED).body(newCourse);
     }

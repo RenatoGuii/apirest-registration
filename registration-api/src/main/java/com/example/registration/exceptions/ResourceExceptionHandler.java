@@ -34,4 +34,15 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
 
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<StandartError> authenticationError(AuthenticationException e, HttpServletRequest request) {
+        StandartError err = new StandartError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(HttpStatus.UNAUTHORIZED.value());
+        err.setError("Authentication error");
+        err.setMsg(e.getMessage());
+        err.setPath(request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(err);
+    }
+
 }
