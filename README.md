@@ -36,7 +36,9 @@ Este projeto é uma API desenvolvida com a finalidade de estudo das tecnologias 
 - Rode o arquivo RegistrationAplication.java
 
 <h2>Documentação da API:</h2>
-- http://localhost:8080/swagger-ui.html (Link do Swagger UI acessada de maneira local após iniciar a aplicação localmente)
+
+- Link do Swagger UI acessada de maneira local após iniciar a aplicação localmente:
+- Link: http://localhost:8080/swagger-ui.html
 
 - A documentação da API foi gerada utilizando o Swagger e pode ser acessada no ambiente de desenvolvimento:
 
