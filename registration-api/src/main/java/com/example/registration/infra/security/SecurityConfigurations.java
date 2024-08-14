@@ -34,6 +34,7 @@ public class SecurityConfigurations {
                 // Regras de Autorização
                 .authorizeHttpRequests(authorize -> authorize
                         // permitAll() = São permitidas para todos (sem necessidade de autenticação)
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/course").hasRole("ADMIN")
