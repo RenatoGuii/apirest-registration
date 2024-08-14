@@ -41,7 +41,7 @@ Documentação da API:
 
 - Autenticação na Documentação: Para testar as requisições protegidas, você pode se autenticar diretamente no Swagger UI (ou use outras plataformas de consumo de API se preferir)
 
-- Primeiro, se registre naAPI usando o endpoint /auth/register.
+- Primeiro, se registre na API usando o endpoint /auth/register.
 - Execute o login na API usando o endpoint /auth/login e obtenha o token JWT.
 - No Swagger UI, clique no ícone de cadeado e insira o token obtido no formato Bearer <seu-token>.
 - Agora você pode acessar os endpoints protegidos.
